@@ -12,14 +12,24 @@
     <artifactId>ocrOnline</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ocrOnline</name>
-    <description>Demo project for Spring Boot</description>
+    <description>ocrOnline with Spring Boot</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,14 +79,15 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
+                            <addClasspath>true</addClasspath>
                             <mainClass>ocrOnline.Server</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <id>assemble-all</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
@@ -86,6 +97,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <finalName>ocrOnline</finalName>
+                    <fork>true</fork>
+                    <mainClass>ocrOnline.Server</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

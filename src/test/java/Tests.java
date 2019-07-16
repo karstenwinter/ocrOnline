@@ -1,4 +1,4 @@
-import ocrOnline.ScanController;
+import ocrOnline.controllers.ScanController;
 import org.junit.Test;
 
 public class Tests {
